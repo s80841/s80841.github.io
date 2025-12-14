@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Bento Landing Page | MUHAMMAD HISYAM BIN HALIL</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* CSS Reset and Global Styles */
+        :root {
+            /* Color Palette */
+            --color-white: #ffffff;
+            --color-light-grey: #f4f7f9; /* Soft background */
+            --color-medium-grey: #e9ecef; /* Card borders */
+            --color-dark-grey: #495057; /* Text */
+            --color-accent: #004c99; /* Deep Ocean Blue (UMT Theme) */
+            --color-card-bg: var(--color-white);
+            
+            /* Typography */
+            --font-primary: 'Inter', sans-serif;
+            
+            /* Spacing */
+            --spacing-gap: 16px;
+            --spacing-padding: 20px;
+            
+            /* Border Radius */
+            --radius-large: 12px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-primary);
+            line-height: 1.6;
+            color: var(--color-dark-grey);
+            background-color: var(--color-light-grey);
+            padding: var(--spacing-gap);
+        }
+
+        /* Utility Classes */
+        .text-accent {
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+
+        .text-subtle {
+            color: #adb5bd;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+
+        /* --- Bento Grid Layout --- */
+        .bento-grid {
+            display: grid;
+            max-width: 1200px;
+            margin: 0 auto;
+            grid-template-columns: repeat(3, 1fr); /* Default 3 columns on desktop */
+            gap: var(--spacing-gap);
+        }
+
+        .bento-card {
+            background-color: var(--color-card-bg);
+            padding: var(--spacing-padding);
+            border-radius: var(--radius-large);
+            border: 1px solid var(--color-medium-grey);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Subtle lift effect */
+            
+            /* Default card content styling */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .bento-card h3 {
+            font-size: 1.25em;
+            margin-bottom: 0.5em;
+            font-weight: 700;
+            color: #343a40;
+        }
+
+        /* Desktop Layout (3 Columns) */
+        /* Card 1 (Profile) - Large Box: Spans 2 rows, 2 columns */
+        .card-profile {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        /* Card 2 (Location) - Small Box: 1x1 */
+        /* Card 3 (Tech Stack) - Medium Box: 2x1 */
+        .card-tech-stack {
+            grid-row: span 1;
+            grid-column: span 1;
+        }
+
+        /* Card 4 (Case Study) - Medium Box: 1x1, placed below Card 3 */
+        .card-case-study {
+            grid-row: span 1;
+            grid-column: span 1;
+        }
+        
+        /* Card 5 (Hobby) - Small Box: 1x1 */
+
+        /* Card 6 (Playlist) - Wide Box: Spans 3 columns at the bottom */
+        .card-playlist {
+            grid-column: span 3;
+            min-height: 100px; /* Give it some vertical presence */
+        }
+
+        /* Card-Specific Content Styling */
+        .profile-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.25em;
+            color: #212529;
+        }
+        .profile-content p {
+            font-size: 1.1em;
+            color: var(--color-dark-grey);
+            margin-top: 5px;
+        }
+        .profile-tagline {
+            font-size: 1.5em;
+            font-style: italic;
+            font-weight: 300;
+            color: var(--color-accent);
+            margin-top: 15px !important;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .social-links a {
+            text-decoration: none;
+            color: var(--color-dark-grey);
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--color-medium-grey);
+            transition: all 0.2s;
+        }
+        .social-links a:hover {
+            background-color: var(--color-accent);
+            color: var(--color-white);
+            border-color: var(--color-accent);
+        }
+
+        .location-time {
+            text-align: right;
+        }
+        .location-time strong {
+            display: block;
+            font-size: 1.8em;
+            margin-bottom: 5px;
+        }
+        
+        .tech-list li {
+            list-style: none;
+            padding: 5px 0;
+            border-bottom: 1px dashed var(--color-medium-grey);
+        }
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+
+        .case-study-title {
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #212529;
+        }
+
+        .playlist-placeholder {
+            text-align: center;
+            padding: 10px;
+            font-style: italic;
+        }
+
+        /* --- Mobile Responsiveness (Stacked Layout) --- */
+        @media (max-width: 768px) {
+            .bento-grid {
+                /* Stacks all items vertically in a single column */
+                grid-template-columns: 1fr; 
+            }
+
+            /* On mobile, all cards span the full width (1 column) and 1 row */
+            .bento-card {
+                grid-column: span 1 !important;
+                grid-row: span 1 !important;
+            }
+
+            .profile-content h1 {
+                font-size: 2em; /* Adjust for smaller screens */
+            }
+
+            .location-time strong {
+                font-size: 1.5em;
+            }
+
+            body {
+                padding: var(--spacing-gap); /* Add a little padding on mobile */
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <main class="bento-grid">
+        
+        <section class="bento-card card-profile">
+            <div class="profile-content">
+                <h1 class="text-accent">MUHAMMAD HISYAM BIN HALIL</h1>
+                <p class="profile-tagline">"Innovating food safety."</p>
+                <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--color-medium-grey);">
+                <p>
+                    <strong>Program:</strong> Food Science (B. Sc. Hons.)<br>
+                    <strong>Year:</strong> Year 1
+                </p>
+            </div>
+            
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">UMT Portal</a>
+            </div>
+        </section>
+
+        <section class="bento-card card-location">
+            <div>
+                <h3>📍 Campus Location</h3>
+            </div>
+            <div class="location-time">
+                <strong class="text-accent">UMT, Kuala Nerus</strong>
+                <p class="text-subtle">2:42:13 PM (GMT+8)</p>
+            </div>
+        </section>
+
+        <section class="bento-card card-tech-stack">
+            <div>
+                <h3>📚 Current Subjects & Skills</h3>
+            </div>
+            <ul class="tech-list">
+                <li>Biochemistry</li>
+                <li>Engineering Mathematics</li>
+                <li>Organic Chemistry</li>
+                <li>Principles of Physical Chemistry</li>
+                <li>Anti-Corruption Integrity</li>
+                <li>Computer Systems and Applications</li>
+            </ul>
+        </section>
+
+        <section class="bento-card card-case-study">
+            <div>
+                <h3>🔬 Current Lab Project Focus</h3>
+            </div>
+            <div>
+                <p class="case-study-title">Starch Gelatinization in Local Kuih</p>
+                <p class="text-subtle">Analyzing texture and rheological profiles of Kuih Lapis samples. </p>
+            </div>
+        </section>
+
+        <section class="bento-card card-hobby">
+            <div>
+                <h3>⚽ Hobbies</h3>
+            </div>
+            <div>
+                <p>Playing **Futsal and Football**.</p>
+                <p class="text-subtle">Often participate in evening pick-up games.</p>
+            </div>
+        </section>
+
+        <section class="bento-card card-playlist">
+            <h3>🎶 Focus Playlist</h3>
+            <div class="playlist-placeholder">
+                <p>Placeholder for Embedded Music Player / Spotify Widget</p>
+                <p class="text-subtle">Currently listening to: Deep Focus Ocean Sounds</p>
+            </div>
+        </section>
+        
+    </main>
+
+</body>
+</html>
